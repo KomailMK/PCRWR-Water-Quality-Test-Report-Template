@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCRWR Test Report - Final Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&family=Arial:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #525659;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .a4-paper {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            padding: 10mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        /* Typography Utilities */
+        .font-serif-header { font-family: 'Times New Roman', serif; }
+        
+        /* Border and Background Utilities */
+        .border-black { border: 1px solid #000000 !important; }
+        .border-r-black { border-right: 1px solid #000000 !important; }
+        .bg-header-grey { background-color: #d9d9d9 !important; }
+        .bg-label-grey { background-color: #e6e6e6 !important; }
+        .bg-table-header { background-color: #e6e6e6 !important; }
+
+        /* General Table Styling */
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            font-size: 11px;
+        }
+        th, td { 
+            border: 1px solid #000; 
+            padding: 4px 6px; 
+            vertical-align: middle;
+        }
+        
+        /* Zebra striping for table rows */
+        tbody tr:nth-child(even) {
+            background-color: #f9fafb; /* gray-50 */
+        }
+
+        /* Section Header Style */
+        .section-title-box {
+            border: 1px solid #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding: 8px;
+            margin-bottom: -1px; /* Overlap with table border */
+            position: relative;
+            z-index: 10;
+            background: white;
+        }
+
+        /* Print Utilities */
+        @media print {
+            body { background: none; margin: 0; padding: 0; }
+            .a4-paper { margin: 0; box-shadow: none; width: 100%; height: auto; }
+            .no-print { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="report-content" class="a4-paper">
+
+        <a id="download-link"
+           href="javascript:void(0)" 
+           onclick="generatePDF()" 
+           data-html2canvas-ignore="true"
+           class="absolute top-4 left-4 text-blue-600 underline cursor-pointer text-xs font-bold no-print hover:text-blue-800 z-[100]">
+            Download PDF
+        </a>
+        
+        <div class="text-center mb-2 mt-4">
+            <h1 class="font-serif-header text-3xl font-bold text-black mb-1">National Water Quality Laboratory</h1>
+            <h2 class="font-serif-header text-lg uppercase text-black">CHEMICAL & MICROBIOLOGY LABORATORY</h2>
+        </div>
+
+        <div class="flex border-black bg-header-grey mb-0">
+            <div class="w-1/4 flex flex-col items-center justify-center p-1 border-r-black">
+                <img src="02.png" alt="PCRWR Logo" class="h-14 w-auto object-contain">
+            </div>
+
+            <div class="w-1/2 flex flex-col items-center justify-center p-1 text-center border-r-black">
+                <h3 class="font-bold text-sm uppercase mb-0.5 leading-tight">PAKISTAN COUNCIL OF RESEARCH IN WATER RESOURCES</h3>
+                <p class="text-[11px] mb-0.5">Ministry of Water Resources, Government of Pakistan</p>
+                <p class="text-[11px] mb-0.5">Khayban-e-Johar, H-8/1, Islamabad</p>
+                <p class="text-[11px] underline text-blue-900">www.pcrwr.gov.pk</p>
+            </div>
+
+            <div class="w-1/4 flex items-center justify-center p-1">
+                <img src="03.png" alt="PNAC Logo" class="h-12 w-auto object-contain">
+            </div>
+        </div>
+
+        <div class="border-black border-t-0 bg-header-grey text-center py-1 mb-6">
+            <h4 class="font-bold text-sm uppercase">TEST REPORT CHEMICAL & MICROBIOLOGY</h4>
+        </div>
+
+        <table class="mb-8">
+            <tr>
+                <td class="font-bold bg-label-grey w-1/4">Report Serial No</td>
+                <td class="w-1/4">AR-06442</td>
+                <td class="font-bold bg-label-grey w-1/4">Total No of Pages</td>
+                <td class="w-1/4">2</td>
+            </tr>
+            <tr>
+                <td class="font-bold bg-label-grey">Customer Name & Address</td>
+                <td colspan="3">Natural cool Sip NCS, Muree Express Way, Darbar stop Manga, Near Gulf City.</td>
+            </tr>
+            <tr>
+                <td class="font-bold bg-label-grey">Sampling Date & Time</td>
+                <td>25-09-2024, 09:00 AM</td>
+                <td class="font-bold bg-label-grey">Customer Code</td>
+                <td>Bottled Water</td>
+            </tr>
+            <tr>
+                <td class="font-bold bg-label-grey">NWQL Sample Code</td>
+                <td>MCL-14528-24</td>
+                <td class="font-bold bg-label-grey">Sample Receipt Date & Time</td>
+                <td>26-09-2024 09:09</td>
+            </tr>
+            <tr>
+                <td class="font-bold bg-label-grey">Temperature of Sample at receipt °C</td>
+                <td>19 High</td>
+                <td class="font-bold bg-label-grey">Humidity (%) at Receipt</td>
+                <td>52</td>
+            </tr>
+            <tr>
+                <td class="font-bold bg-label-grey">Date(s) of Analysis</td>
+                <td>26-09-2024 to 09-10-2024</td>
+                <td class="font-bold bg-label-grey">Reporting Date</td>
+                <td>9-10-2024</td>
+            </tr>
+        </table>
+
+        <div class="mb-8">
+            <div class="section-title-box">
+                PHYSICAL & AESTHETIC PARAMETERS
+            </div>
+            <table class="text-center">
+                <thead class="bg-table-header font-bold">
+                    <tr>
+                        <th rowspan="2" class="w-10">Sr.#</th>
+                        <th rowspan="2" class="text-left">Water Quality Parameter</th>
+                        <th rowspan="2">Units</th>
+                        <th rowspan="2">Det. Limit</th>
+                        <th rowspan="2">Reference Methods</th>
+                        <th>Permissible Limits / Tolerance Limit</th>
+                        <th rowspan="2">Results</th>
+                        <th rowspan="2">Measurement Uncertainty U=w</th>
+                    </tr>
+                    <tr>
+                        <th class="text-[9px] py-1">Potable Water (PSQCA/NSDWQ, 2010)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="text-left">Color*</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>Sensory Evaluation</td>
+                        <td>Colorless</td>
+                        <td>Colorless</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="text-left">Electrical Conductivity</td>
+                        <td>(μS/cm)</td>
+                        <td>0.11</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>481.00</td>
+                        <td>±4%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="text-left">pH</td>
+                        <td>-</td>
+                        <td>0.03</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>6.5 - 8.5</td>
+                        <td>6.89</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="text-left">Turbidity</td>
+                        <td>NTU</td>
+                        <td>0.31</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>< 5</td>
+                        <td>BDL</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mb-8">
+            <div class="section-title-box">
+                MAJOR CHEMICAL PARAMETERS
+            </div>
+            <table class="text-center">
+                <thead class="bg-table-header font-bold">
+                    <tr>
+                        <th rowspan="2" class="w-10">Sr.#</th>
+                        <th rowspan="2" class="text-left">Water Quality Parameter</th>
+                        <th rowspan="2">Units</th>
+                        <th rowspan="2">Det. Limit</th>
+                        <th rowspan="2">Reference Methods</th>
+                        <th>Permissible Limits / Tolerance Limit</th>
+                        <th rowspan="2">Results</th>
+                        <th rowspan="2">Measurement Uncertainty U=w</th>
+                    </tr>
+                    <tr>
+                        <th class="text-[9px] py-1">Potable Water (PSQCA/NSDWQ, 2010)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td class="text-left">Alkalinity as CaCO₃*</td>
+                        <td>mg/L</td>
+                        <td>5</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>197.00</td>
+                        <td>±6%</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td class="text-left">Bicarbonates*</td>
+                        <td>mg/L</td>
+                        <td>5.0</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>197.00</td>
+                        <td>±6%</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td class="text-left">Calcium</td>
+                        <td>mg/L</td>
+                        <td>2.0</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>41.00</td>
+                        <td>±7%</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td class="text-left">Carbonates*</td>
+                        <td>mg/L</td>
+                        <td>5.0</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>BDL</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td class="text-left">Chlorides*</td>
+                        <td>mg/L</td>
+                        <td>2.0</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>< 250</td>
+                        <td>20.00</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td class="text-left">Total Hardness</td>
+                        <td>mg/L</td>
+                        <td>5.0</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>< 500</td>
+                        <td>202.00</td>
+                        <td>±8%</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td class="text-left">Magnesium</td>
+                        <td>mg/L</td>
+                        <td>1.0</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>24</td>
+                        <td>±6%</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td class="text-left">Potassium</td>
+                        <td>mg/L</td>
+                        <td>0.02</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>1.20</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td class="text-left">Sodium</td>
+                        <td>mg/L</td>
+                        <td>1.57</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>31.00</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td class="text-left">Sulphate</td>
+                        <td>mg/L</td>
+                        <td>0.28</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>NGVS</td>
+                        <td>26.00</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td class="text-left">Nitrate (N)</td>
+                        <td>mg/L</td>
+                        <td>0.06</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>< 10</td>
+                        <td>0.24</td>
+                        <td>±5%</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td class="text-left">TDS*</td>
+                        <td>mg/L</td>
+                        <td>-</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>< 1000</td>
+                        <td>265</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mb-8">
+            <div class="section-title-box">
+                MICROBIOLOGICAL PARAMETERS
+            </div>
+            <table class="text-center">
+                <thead class="bg-table-header font-bold">
+                    <tr>
+                        <th rowspan="2" class="w-10">Sr.#</th>
+                        <th rowspan="2" class="text-left">Water Quality Parameter</th>
+                        <th rowspan="2">Units</th>
+                        <th rowspan="2">Reference Methods</th>
+                        <th>Permissible Limits</th>
+                        <th rowspan="2">Results</th>
+                    </tr>
+                    <tr>
+                        <th class="text-[9px] py-1">Potable Water (PSQCA/NSDWQ, 2010)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>17</td>
+                        <td class="text-left">Total Coliforms</td>
+                        <td>CFU/100ml</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>0</td>
+                        <td>-ve</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td class="text-left">Fecal Coliforms</td>
+                        <td>CFU/100ml</td>
+                        <td>APHA, 24th Edition</td>
+                        <td>0</td>
+                        <td>-ve</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td class="text-left">E-coli</td>
+                        <td>CFU/100ml</td>
+                        <td>USEPA-1603</td>
+                        <td>0</td>
+                        <td>-ve</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mb-4">
+            <div class="text-xs font-bold uppercase mb-2">Interpretation (Statement of Conformity)</div>
+            <table class="w-full text-xs">
+                <tr>
+                    <td class="bg-label-grey w-2/3">Quality of water sample based on tested chemical parameter</td>
+                    <td class="text-center font-bold bg-green-50">✓ Safe</td>
+                    <td class="text-center text-gray-400">Unsafe</td>
+                </tr>
+                <tr>
+                    <td class="bg-label-grey">Quality of water sample based on tested microbial parameter</td>
+                    <td class="text-center font-bold bg-green-50">✓ Safe</td>
+                    <td class="text-center text-gray-400">Unsafe</td>
+                </tr>
+                <tr class="h-8">
+                    <td class="bg-label-grey">Remarks (if any)</td>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+            <div class="text-[10px] italic mt-1 text-right">* Verified by technical manager & authorized by QC manager.</div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2 text-[9px] mb-4 border-t border-black pt-2">
+            <div><strong>NGVS:</strong> No Guideline Value Set</div>
+            <div><strong>WHO:</strong> World Health Organization</div>
+            <div><strong>MPN:</strong> Most Probable Number</div>
+            <div><strong>PSQCA:</strong> Pakistan Standard Quality Control Authority</div>
+            <div><strong>NSDWQ:</strong> National Standards for Drinking Water Quality</div>
+            <div><strong>BDL:</strong> Below Detection Limit</div>
+            <div><strong>APHA:</strong> American Public Health Association</div>
+            <div><strong>FAO:</strong> Food & Agriculture Organization</div>
+            <div><strong>USEPA:</strong> US Environmental Protection Agency</div>
+            <div><strong>CFU:</strong> Colony Forming Unit</div>
+            <div><strong>QC:</strong> Quality control</div>
+            <div><strong>*</strong> Non Accredited</div>
+        </div>
+
+        <div class="text-[9px] text-justify leading-snug mb-6">
+            <strong>Terms & Conditions:</strong><br>
+            • Test results in this report relate only to the test item/sample submitted and tested.<br>
+            • The test report shall not be reproduced except in full, without written approval of NWQL-PCRWR.<br>
+            • Water Quality Parameters exceeding WHO/NSDWQ guidelines are highlighted.<br>
+            • Safe - acceptance based on guard band. Unsafe - rejection based on guard band.
+        </div>
+        
+        <div class="flex justify-between text-[9px] border-t border-gray-400 pt-2">
+            <span>Doc ID: NWQL/LMS/TR-11 | Revision No.: 20</span>
+            <span>Issue Date: 08-01-2024</span>
+        </div>
+
+    </div>
+
+    <script>
+        function generatePDF() {
+            // 1. Visual feedback (Link changes text)
+            const link = document.getElementById('download-link');
+            const element = document.getElementById('report-content');
+            const originalText = link.innerText;
+
+            link.innerText = "Downloading...";
+            
+            // 2. Options for html2pdf
+            const opt = {
+                margin:       0,
+                filename:     'PCRWR_Report.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    allowTaint: true, // IMPORTANT for local images
+                    scrollY: 0
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // 3. Execution with Error Handling
+            html2pdf().set(opt).from(element).save()
+            .then(() => {
+                // Success: Reset link text
+                link.innerText = originalText;
+            })
+            .catch((error) => {
+                // Failure: Alert user
+                console.error("PDF Generation Error:", error);
+                alert("PDF failed to download. \n\nReason: " + error.message + "\n\nTIP: If you are opening this file directly from a folder (file://), try opening it via a local server (like VS Code Live Server) to allow image loading.");
+                link.innerText = originalText;
+            });
+        }
+    </script>
+
+</body>
+</html>
