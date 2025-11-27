@@ -41,3 +41,10 @@ If you have Python installed, open your terminal/command prompt in the project f
 # Python 3.x
 python -m http.server
 ```
+
+#### Method 3: Python
+If you have Node.js installed:
+
+```bash
+npx http-server
+```
